@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Scrollytelling with Background Images</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, sans-serif;
+    }
+
+    body {
+      background: #000;
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    /* Each scene fills the viewport */
+    .scene {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    /* Background image layer */
+    .scene-bg {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      transform: scale(1.1);
+      transition: opacity 1s ease, transform 1.5s ease;
+      will-change: transform, opacity;
+    }
+
+    .scene.active .scene-bg {
+      opacity: 0.5;
+      transform: scale(1);
+    }
+
+    /* Text card */
+    .scene-content {
+      position: relative;
+      max-width: 520px;
+      background: rgba(0, 0, 0, 0.6);
+      padding: 24px;
+      border-radius: 16px;
+      backdrop-filter: blur(6px);
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .scene.active .scene-content {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    h2 {
+      font-size: clamp(1.6rem, 5vw, 2.2rem);
+      margin-bottom: 12px;
+    }
+
+    p {
+      line-height: 1.6;
+      opacity: 0.9;
+    }
+
+    /* 📱 Mobile tuning */
+    @media (max-width: 600px) {
+      .scene-content {
+        padding: 20px;
+      }
+    }
+
+    /* ♿ Reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      .scene-bg,
+      .scene-content {
+        transition: none;
+        transform: none;
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <section class="scene">
+    <div class="scene-bg" style="background-image:url('https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1400&q=80')"></div>
+    <div class="scene-content">
+      <h2>The Journey Begins</h2>
+      <p>
+        Every story starts somewhere. Scroll to move forward.
+      </p>
+    </div>
+  </section>
+
+  <section class="scene">
+    <div class="scene-bg" style="background-image:url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1400&q=80')"></div>
+    <div class="scene-content">
+      <h2>Into the Forest</h2>
+      <p>
+        The environment changes as the story deepens.
+      </p>
+    </div>
+  </section>
+
+  <section class="scene">
+    <div class="scene-bg" style="background-image:url('https://images.unsplash.com/photo-1491553895911-0055eca6402d?auto=format&fit=crop&w=1400&q=80')"></div>
+    <div class="scene-content">
+      <h2>Crossing the Desert</h2>
+      <p>
+        Wide spaces slow time and focus attention.
+      </p>
+    </div>
+  </section>
+
+  <section class="scene">
+    <div class="scene-bg" style="background-image:url('https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=1400&q=80')"></div>
+    <div class="scene-content">
+      <h2>The Road Ahead</h2>
+      <p>
+        The story continues beyond the screen.
+      </p>
+    </div>
+  </section>
+
+  <script>
+    const scenes = document.querySelectorAll('.scene');
+    const isMobile = window.innerWidth < 600;
+
+    const observer = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          entry.target.classList.toggle(
+            'active',
+            entry.isIntersecting
+          );
+        });
+      },
+      {
+        threshold: isMobile ? 0.45 : 0.6
+      }
+    );
+
+    scenes.forEach(scene => observer.observe(scene));
+  </script>
+
+</body>
+</html>
