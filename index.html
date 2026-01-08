@@ -162,7 +162,7 @@
   </style>
 </head>
 <body>
-  <h1>Our 100-Moment Story Timeline</h1>
+  <h1>Our Best Memories Together</h1>
 
   <div class="timeline-container" id="timeline"></div>
 
@@ -384,13 +384,116 @@
       "IMG_9035.HEIC"
     ]
 
+    const smallNames = [
+      "IMG_8647 Small.jpeg",
+      "IMG_8656 Small.jpeg",
+      "IMG_8762 Small.jpeg",
+      "IMG_8821 Small.jpeg",
+      "IMG_9010 Small.jpeg",
+      "IMG_9048 Small.jpeg",
+      "IMG_9141 Small.jpeg",
+      "IMG_2517 Small.jpeg",
+      "00a35dda-7e73-4506-89f8-620da3a0175d Small.jpeg",
+      "IMG_4602 Small.jpeg",
+      "IMG_1346 Small.jpeg",
+      "IMG_2551 Small.jpeg",
+      "A5F7502E-B809-47BA-B6C2-7748AEF034C6 Small.jpeg",
+      "IMG_9579 Small.jpeg",
+      "IMG_2743 Small.jpeg",
+      "IMG_1223 Small.jpeg",
+      "IMG_1407 Small.jpeg",
+      "IMG_1616 Small.jpeg",
+      "IMG_1876 Small.jpeg",
+      "IMG_4110 Small.jpeg",
+      "IMG_2942 Small.jpeg",
+      "IMG_3035 Small.jpeg",
+      "IMG_3278 Small.jpeg",
+      "IMG_3153 Small.jpeg",
+      "IMG_3851 Small.jpeg",
+      "IMG_4595 Small.jpeg",
+      "IMG_3206 Small.jpeg",
+      "IMG_4992 Small.jpeg",
+      "IMG_3218 Small.jpeg",
+      "IMG_3229 Small.jpeg",
+      "IMG_5074 Small.jpeg",
+      "IMG_7673 Small.jpeg",
+      "IMG_7768 Small.jpeg",
+      "IMG_8065 Small.jpeg",
+      "IMG_8496 Small.jpeg",
+      "IMG_8858 Small.jpeg",
+      "IMG_8977 Small.jpeg",
+      "IMG_9445 Small.jpeg",
+      "IMG_9700 Small.jpeg",
+      "IMG_9853 Small.jpeg",
+      "IMG_9988 Small.jpeg",
+      "IMG_4180 Small.jpeg",
+      "IMG_4228 Small.jpeg",
+      "IMG_4250 Small.jpeg",
+      "IMG_1092 Small.jpeg",
+      "IMG_1442 Small.jpeg",
+      "IMG_1483 Small.jpeg",
+      "IMG_1961 Small.jpeg",
+      "IMG_4495 Small.jpeg",
+      "IMG_2855 Small.jpeg",
+      "IMG_2887 Small.jpeg",
+      "IMG_2909 Small.jpeg",
+      "IMG_4624 Small.jpeg",
+      "IMG_3744 Small.jpeg",
+      "IMG_4242 Small.jpeg",
+      "IMG_5054 Small.jpeg",
+      "IMG_5111 Small.jpeg",
+      "IMG_5061 Small.jpeg",
+      "IMG_5294 Small.jpeg",
+      "IMG_5269 Small.jpeg",
+      "IMG_5312 Small.jpeg",
+      "IMG_8510 Small.jpeg",
+      "IMG_5066 Small.jpeg",
+      "IMG_7285 Small.jpeg",
+      "IMG_3601 Small.jpeg",
+      "IMG_9137 Small.jpeg",
+      "IMG_5401 Small.jpeg",
+      "IMG_4319 Small.jpeg",
+      "IMG_7992 Small.jpeg",
+      "IMG_5733 Small.jpeg",
+      "IMG_5772 Small.jpeg",
+      "IMG_5825 Small.jpeg",
+      "IMG_5832 Small.jpeg",
+      "IMG_6357 Small.jpeg",
+      "IMG_9873 Small.jpeg",
+      "IMG_9929 Small.jpeg",
+      "IMG_0279 Small.jpeg",
+      "IMG_0395 Small.jpeg",
+      "IMG_0623 Small.jpeg",
+      "IMG_6980 Small.jpeg",
+      "IMG_1053 Small.jpeg",
+      "IMG_1339 Small.jpeg",
+      "IMG_7413 Small.jpeg",
+      "IMG_2506 Small.jpeg",
+      "IMG_2531 Small.jpeg",
+      "IMG_2718 Small.jpeg",
+      "IMG_7466 Small.jpeg",
+      "IMG_3457 Small.jpeg",
+      "IMG_7845 Small.jpeg",
+      "IMG_6083 Small.jpeg",
+      "IMG_6277 Small.jpeg",
+      "IMG_6303 Small.jpeg",
+      "IMG_6995 Small.jpeg",
+      "IMG_7017 Small.jpeg",
+      "IMG_7074 Small.jpeg",
+      "6D3B01AF-F4E0-44E6-82A7-2A571A8903E9 Small.jpeg",
+      "IMG_9329 Small.jpeg",
+      "IMG_7494 Small.jpeg",
+      "IMG_7605 Small.jpeg",
+      "IMG_9035 Small.jpeg",
+    ]
+
     // Generate 100 timeline items
     for (let i = 0; i < 100; i++) {
       const item = document.createElement('div');
       item.classList.add('timeline-item', i % 2 === 0 ? 'right' : 'left');
 
       const img = document.createElement('img');
-      img.src = './photos/' + fileNames[i];
+      img.src = './photos/low/' + smallNames[i]
       img.style.width = '300';
       img.style.height = 'auto';
       img.alt = `Moment ${i}`;
@@ -400,7 +503,7 @@
       caption.textContent = storySnippets[i];
 
       img.addEventListener('click', () => {
-        modalImg.src = img.src;
+        modalImg.src = './photos/' + fileNames[i];
         modal.style.display = 'flex';
       });
 
