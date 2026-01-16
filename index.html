@@ -196,7 +196,7 @@
       width: 600px;
       height: 360px;
       left: 50%;
-      transform: translateX(-25%);
+      transform: translateX(-17%);
     }
 
     .card {
@@ -265,6 +265,12 @@
     .card:hover {
       z-index: 10;
       box-shadow: 0 25px 45px rgba(0, 0, 0, 0.6);
+    }
+
+    .card.active {
+      transform: translateX(0) rotate(0deg) translateY(-50px) scale(1.08);
+      z-index: 200;
+      box-shadow: 0 35px 60px rgba(0, 0, 0, 0.7);
     }
 
   </style>
@@ -666,12 +672,52 @@
 
     items.forEach(item => observer.observe(item));
 
-    // Optional: bring clicked card to front
+    /*// Optional: bring clicked card to front
     document.querySelectorAll('.card').forEach(card => {
       card.addEventListener('click', () => {
         document.querySelectorAll('.card').forEach(c => c.style.zIndex = '');
         card.style.zIndex = 20;
       });
+    });*/
+    const cards = Array.from(document.querySelectorAll('.card'));
+    let activeIndex = 2; // start with center card
+    let startX = null;
+
+    function setActiveCard(index) {
+      cards.forEach(card => card.classList.remove('active'));
+      activeIndex = Math.max(0, Math.min(cards.length - 1, index));
+      cards[activeIndex].classList.add('active');
+    }
+
+    // Initialize
+    setActiveCard(activeIndex);
+
+    // Mouse support
+    document.addEventListener('mousedown', e => startX = e.clientX);
+    document.addEventListener('mouseup', e => handleSwipe(e.clientX));
+
+    // Touch support
+    document.addEventListener('touchstart', e => startX = e.touches[0].clientX);
+    document.addEventListener('touchend', e => handleSwipe(e.changedTouches[0].clientX));
+
+    function handleSwipe(endX) {
+      if (startX === null) return;
+
+      const deltaX = endX - startX;
+      const threshold = 50;
+
+      if (deltaX > threshold) {
+        setActiveCard(activeIndex - 1); // swipe right
+      } else if (deltaX < -threshold) {
+        setActiveCard(activeIndex + 1); // swipe left
+      }
+
+      startX = null;
+    }
+
+    // Optional: click to activate
+    cards.forEach((card, index) => {
+      card.addEventListener('click', () => setActiveCard(index));
     });
   </script>
 </body>
