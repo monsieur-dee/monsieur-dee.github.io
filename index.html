@@ -7,19 +7,46 @@
   <style>
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
+      font-family: 'Helvetica', sans-serif;
       background-color: #fdf6f0;
       color: #333;
+      padding-bottom: 100px;
+    }
+
+    .header-container {
+      position: sticky;
+      top: 0;
+      z-index: 11;
+    }
+
+    .black-line {
+      border: none; /* Removes default border */
+      height: 10px; /* Sets the thickness of the line */
+      background-color: #000; /* Sets the line color to white */
+      margin: 0; /* Adds some space above and below the line */
+      width: 100%; /* Ensures the line spans the full width of its container */
+      position: relative;
+      z-index: 10;
+    }
+
+    .white-line {
+      border: none; /* Removes default border */
+      height: 2px; /* Sets the thickness of the line */
+      background-color: #ffffff; /* Sets the line color to white */
+      margin: 0; /* Adds some space above and below the line */
+      width: 100%; /* Ensures the line spans the full width of its container */
+      position: relative;
+      z-index: 11;
     }
 
     h1 {
-      text-align: center;
+      text-align: left;
       padding: 20px;
-      background-color: #8b5e3c;
+      padding-bottom: 40px;
+      background-color: #000;
       color: #fff;
       margin: 0;
-      position: sticky;
-      top: 0;
+      position: relative;
       z-index: 10;
     }
 
@@ -37,9 +64,9 @@
       position: absolute;
       left: 50%;
       transform: translateX(-50%);
-      width: 4px;
+      width: 8px;
       height: 100%;
-      background-color: #8b5e3c;
+      background-color: #0039A6;
     }
 
     .timeline-item {
@@ -82,7 +109,8 @@
 
     .timeline-item p {
       margin-top: 10px;
-      background-color: #fff0e5;
+      font-size: 20px;
+      font-weight: bold;
       padding: 10px;
       border-radius: 5px;
       display: inline-block;
@@ -97,9 +125,11 @@
       transform: translateY(-50%);
       width: 16px;
       height: 16px;
+      border: 1px solid black;
       border-radius: 50%;
-      background-color: #8b5e3c;
-      z-index: 5;
+      border-color: #000;
+      background-color: #fff;
+      z-index: 0;
     }
 
     .timeline-item.left::before {
@@ -159,10 +189,91 @@
         max-width: 90%;
       }
     }
+
+    .card-hand {
+      position: relative;
+      width: 600px;
+      height: 360px;
+      left: 50%;
+      transform: translateX(-25%);
+    }
+
+    .card {
+      position: absolute;
+      width: 200px;
+      height: 260px;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #fff;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+      transform-origin: bottom center;
+      transition:
+        transform 0.35s ease,
+        box-shadow 0.35s ease;
+      cursor: pointer;
+    }
+
+    .card img {
+      width: 100%;
+      height: 260px;
+      object-fit: cover;
+    }
+
+    /* Fan layout (centered) */
+    .card:nth-child(1) {
+      transform: translateX(-260px) rotate(-20deg) translateY(40px);
+      z-index: 1;
+    }
+
+    .card:nth-child(2) {
+      transform: translateX(-130px) rotate(-10deg) translateY(20px);
+      z-index: 2;
+    }
+
+    .card:nth-child(3) {
+      transform: translateX(0) rotate(0deg);
+      z-index: 3;
+    }
+
+    .card:nth-child(4) {
+      transform: translateX(130px) rotate(10deg) translateY(20px);
+      z-index: 2;
+    }
+
+    .card:nth-child(5) {
+      transform: translateX(260px) rotate(20deg) translateY(40px);
+      z-index: 1;
+    }
+
+    .page-title {
+      font-family: 'Helvetica', cursive;
+      font-size: 30px;
+      text-align: center;
+      padding: 12px;
+      background-color: #0039A6;
+      max-width: 300px;
+      color: #fff;
+      margin: 0;
+      position: relative;
+      left: 50%;
+      z-index: 10;
+      transform: translateX(-50%);
+    }
+
+    /* Hover: bring to foreground */
+    .card:hover {
+      z-index: 10;
+      box-shadow: 0 25px 45px rgba(0, 0, 0, 0.6);
+    }
+
   </style>
 </head>
 <body>
-  <h1>Our Best Memories Together</h1>
+  <div class="header-container">
+    <hr class="black-line">
+    <hr class="white-line">
+    <h1>Our Best Memories Together</h1>
+  </div>
 
   <div class="timeline-container" id="timeline"></div>
 
@@ -171,6 +282,30 @@
     <a href="#" class="close-btn">&times;</a>
     <img id="modal-img" src="" alt="Large view">
   </div>
+
+  <div class="card-hand">
+    <div class="card">
+      <img src="./photos/low/IMG_9831 Small.jpeg" alt="Photo 1">
+    </div>
+
+    <div class="card">
+      <img src="./photos/low/IMG_9844 Small.jpeg" alt="Photo 2">
+    </div>
+
+    <div class="card">
+      <img src="./photos/low/IMG_9879 Small.jpeg" alt="Photo 3">
+    </div>
+
+    <div class="card">
+      <img src="./photos/low/IMG_9758 Small.jpeg" alt="Photo 4">
+    </div>
+
+    <div class="card">
+      <img src="./photos/low/IMG_9836 Small.jpeg" alt="Photo 5">
+    </div>
+  </div>
+
+   <h2 class="page-title">Би чамд хайртай</h2>
 
   <script>
     const timeline = document.getElementById('timeline');
@@ -189,6 +324,8 @@
       "08/11/2023",
       "09/04/2023",
       "10/12/2023",
+      "10/20/2023",
+      "12/10/2023",
       "12/22/2023",
       "01/14/2024",
       "01/27/2024",
@@ -212,9 +349,12 @@
       "06/24/2024",
       "08/24/2024",
       "08/26/2024",
+      "08/31/2024",
       "09/02/2024",
       "09/22/2024",
+      "09/22/2024",
       "10/06/2024",
+      "10/10/2024",
       "10/11/2024",
       "10/19/2024",
       "10/28/2024",
@@ -232,22 +372,17 @@
       "01/01/2025",
       "01/01/2025",
       "01/19/2025",
+      "01/27/2025",
       "02/08/2025",
       "02/18/2025",
+      "02/19/2025",
       "02/20/2025",
       "02/20/2025",
       "02/21/2025",
       "02/25/2025",
       "02/25/2025",
       "02/26/2025",
-      "03/05/2025",
-      "03/09/2025",
-      "03/09/2025",
-      "03/11/2025",
-      "03/11/2025",
       "03/25/2025",
-      "05/12/2025",
-      "05/12/2025",
       "05/23/2025",
       "05/26/2025",
       "05/30/2025",
@@ -292,6 +427,8 @@
       "IMG_2517.heic",
       "00a35dda-7e73-4506-89f8-620da3a0175d.heic",
       "IMG_4602.heic",
+      "IMG_5066.HEIC",
+      "IMG_7285.HEIC",
       "IMG_1346.HEIC",
       "IMG_2551.HEIC",
       "A5F7502E-B809-47BA-B6C2-7748AEF034C6.heic",
@@ -315,10 +452,13 @@
       "IMG_5074.HEIC",
       "IMG_7673.heic",
       "IMG_7768.heic",
+      "IMG_7992.HEIC",
       "IMG_8065.heic",
       "IMG_8496.HEIC",
+      "IMG_8510.HEIC",
       "IMG_8858.heic",
       "IMG_8977.HEIC",
+      "IMG_9137.HEIC",
       "IMG_9445.HEIC",
       "IMG_9700.HEIC",
       "IMG_9853.heic",
@@ -335,22 +475,17 @@
       "IMG_2887.HEIC",
       "IMG_2909.HEIC",
       "IMG_4624.HEIC",
+      "IMG_3601.HEIC",
       "IMG_3744.heic",
       "IMG_4242.HEIC",
+      "IMG_4319.HEIC",
       "IMG_5054.HEIC",
       "IMG_5111.HEIC",
       "IMG_5061.heic",
       "IMG_5294.heic",
       "IMG_5269.HEIC",
       "IMG_5312.HEIC",
-      "IMG_8510.HEIC",
-      "IMG_5066.HEIC",
-      "IMG_7285.HEIC",
-      "IMG_3601.HEIC",
-      "IMG_9137.HEIC",
       "IMG_5401.PNG",
-      "IMG_4319.HEIC",
-      "IMG_7992.HEIC",
       "IMG_5733.HEIC",
       "IMG_5772.HEIC",
       "IMG_5825.HEIC",
@@ -395,6 +530,8 @@
       "IMG_2517 Small.jpeg",
       "00a35dda-7e73-4506-89f8-620da3a0175d Small.jpeg",
       "IMG_4602 Small.jpeg",
+      "IMG_5066 Small.jpeg",
+      "IMG_7285 Small.jpeg",
       "IMG_1346 Small.jpeg",
       "IMG_2551 Small.jpeg",
       "A5F7502E-B809-47BA-B6C2-7748AEF034C6 Small.jpeg",
@@ -418,10 +555,13 @@
       "IMG_5074 Small.jpeg",
       "IMG_7673 Small.jpeg",
       "IMG_7768 Small.jpeg",
+      "IMG_7992 Small.jpeg",
       "IMG_8065 Small.jpeg",
       "IMG_8496 Small.jpeg",
+      "IMG_8510 Small.jpeg",
       "IMG_8858 Small.jpeg",
       "IMG_8977 Small.jpeg",
+      "IMG_9137 Small.jpeg",
       "IMG_9445 Small.jpeg",
       "IMG_9700 Small.jpeg",
       "IMG_9853 Small.jpeg",
@@ -438,22 +578,17 @@
       "IMG_2887 Small.jpeg",
       "IMG_2909 Small.jpeg",
       "IMG_4624 Small.jpeg",
+      "IMG_3601 Small.jpeg",
       "IMG_3744 Small.jpeg",
       "IMG_4242 Small.jpeg",
+      "IMG_4319 Small.jpeg",
       "IMG_5054 Small.jpeg",
       "IMG_5111 Small.jpeg",
       "IMG_5061 Small.jpeg",
       "IMG_5294 Small.jpeg",
       "IMG_5269 Small.jpeg",
       "IMG_5312 Small.jpeg",
-      "IMG_8510 Small.jpeg",
-      "IMG_5066 Small.jpeg",
-      "IMG_7285 Small.jpeg",
-      "IMG_3601 Small.jpeg",
-      "IMG_9137 Small.jpeg",
       "IMG_5401 Small.jpeg",
-      "IMG_4319 Small.jpeg",
-      "IMG_7992 Small.jpeg",
       "IMG_5733 Small.jpeg",
       "IMG_5772 Small.jpeg",
       "IMG_5825 Small.jpeg",
@@ -529,6 +664,14 @@
     }, { threshold: 0.2 });
 
     items.forEach(item => observer.observe(item));
+
+    // Optional: bring clicked card to front
+    document.querySelectorAll('.card').forEach(card => {
+      card.addEventListener('click', () => {
+        document.querySelectorAll('.card').forEach(c => c.style.zIndex = '');
+        card.style.zIndex = 20;
+      });
+    });
   </script>
 </body>
 </html>
