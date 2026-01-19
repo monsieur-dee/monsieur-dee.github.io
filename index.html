@@ -50,6 +50,39 @@
       z-index: 10;
     }
 
+    .trains {
+      diplay: flex;
+      text-align: center;
+      color: #fff;
+      padding-top: 10px;
+      position: relative;
+      left: 50%;
+      z-index: 10;
+      transform: translateX(-50%);
+    }
+
+    .ktrain {
+      display: inline-block;
+      padding: 5px;
+      font-size: 20px;
+      font-weight: bold;
+      width: 25px;
+      height: 25px;
+      margin: 0;
+      background-color: #0039A6;
+    }
+
+    .btrain {
+      display: inline-block;
+      padding: 5px;
+      font-size: 20px;
+      font-weight: bold;
+      width: 25px;
+      height: 25px;
+      margin: 0;
+      background-color: #FF6319;
+    }
+
     .timeline-container {
       position: relative;
       width: 90%;
@@ -64,9 +97,9 @@
       position: absolute;
       left: 50%;
       transform: translateX(-50%);
-      width: 8px;
+      width: 16px;
       height: 100%;
-      background-color: #0039A6;
+      background: linear-gradient(to right, #0039A6 0% 55%, #FF6319 55% 100%);
     }
 
     .timeline-item {
@@ -124,21 +157,21 @@
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      width: 16px;
-      height: 16px;
-      border: 1px solid black;
-      border-radius: 50%;
+      width: 30px;
+      height: 15px;
+      border: 3px solid black;
+      border-radius: 30%;
       border-color: #000;
       background-color: #fff;
       z-index: -1;
     }
 
     .timeline-item.left::before {
-      right: -8px;
+      right: -16px;
     }
 
     .timeline-item.right::before {
-      left: -8px;
+      left: -16px;
     }
 
     /* Lightbox modal */
@@ -280,6 +313,11 @@
     <hr class="black-line">
     <hr class="white-line">
     <h1>Our Best Memories Together</h1>
+  </div>
+
+  <div class="trains">
+    <span class="ktrain">K</span>
+    <span class="btrain">B</span>
   </div>
 
   <div class="timeline-container" id="timeline"></div>
